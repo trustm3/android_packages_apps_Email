@@ -260,9 +260,9 @@ public class SecurityPolicy {
             if ((reasons & INACTIVE_NEED_PASSWORD) != 0) {
                 sb.append("password ");
             }
-            if ((reasons & INACTIVE_NEED_ENCRYPTION) != 0) {
-                sb.append("encryption ");
-            }
+            //if ((reasons & INACTIVE_NEED_ENCRYPTION) != 0) {
+            //    sb.append("encryption ");
+            //}
             if ((reasons & INACTIVE_PROTOCOL_POLICIES) != 0) {
                 sb.append("protocol ");
             }
@@ -374,12 +374,12 @@ public class SecurityPolicy {
                     reasons |= INACTIVE_NEED_PASSWORD;
                 }
             }
-            if (policy.mRequireEncryption) {
-                int encryptionStatus = getDPM().getStorageEncryptionStatus();
-                if (encryptionStatus != DevicePolicyManager.ENCRYPTION_STATUS_ACTIVE) {
-                    reasons |= INACTIVE_NEED_ENCRYPTION;
-                }
-            }
+            //if (policy.mRequireEncryption) {
+            //    int encryptionStatus = getDPM().getStorageEncryptionStatus();
+            //    if (encryptionStatus != DevicePolicyManager.ENCRYPTION_STATUS_ACTIVE) {
+            //        reasons |= INACTIVE_NEED_ENCRYPTION;
+            //    }
+            //}
             if (policy.mDontAllowCamera && !dpm.getCameraDisabled(mAdminName)) {
                 reasons |= INACTIVE_NEED_CONFIGURATION;
             }
@@ -447,8 +447,8 @@ public class SecurityPolicy {
                 LogUtils.d(TAG, "SecurityException in setCameraDisabled, nothing changed");
             }
 
-            // encryption required
-            dpm.setStorageEncryption(mAdminName, aggregatePolicy.mRequireEncryption);
+            //// encryption required
+            //dpm.setStorageEncryption(mAdminName, aggregatePolicy.mRequireEncryption);
         }
     }
 
